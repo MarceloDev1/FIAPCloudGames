@@ -5,7 +5,7 @@ namespace FIAPCloudGames.Models.DTOs.Games
 {
     public class GameUpdateDto
     {
-        public int Id { get; internal set; }
+        public int Id { get; set; }
         [StringLength(100, MinimumLength = 3, ErrorMessage = "O título deve ter entre 3 e 100 caracteres")]
         public string? Title { get; set; }
 

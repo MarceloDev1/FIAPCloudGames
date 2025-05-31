@@ -9,7 +9,7 @@ namespace FIAPCloudGames.Services.Interfaces
         Task<IEnumerable<UserResponseDto>> GetAllUsersAsync();
         Task<UserResponseDto> GetUserByIdAsync(int id);
         Task<UserResponseDto> CreateUserAsync(UserCreateDto userDto);
-        Task UpdateUserAsync(int id, UserUpdateDto userDto);
+        Task UpdateUserAsync(UserUpdateDto userDto);
         Task DeleteUserAsync(int id);
         Task<User> GetCurrentUserAsync(ClaimsPrincipal user);
         Task<User> GetByEmailAsync(string email);

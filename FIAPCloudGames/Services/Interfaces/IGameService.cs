@@ -7,9 +7,9 @@ namespace FIAPCloudGames.Services.Interfaces
 
         Task<IEnumerable<GameResponseDto>> GetAllGamesAsync();
         Task<GameResponseDto> GetGameByIdAsync(int id);
-        Task<GameResponseDto> CreateGameAsync(RegisterRequest gameDto);
-        Task UpdateGameAsync(int id, GameUpdateDto gameDto);
+        Task<GameResponseDto> CreateGameAsync(GameCreateDto gameDto);
+        Task UpdateGameAsync(GameUpdateDto gameDto);
         Task DeleteGameAsync(int id);
-
+        Task UpdateGamePriceAsync(int id, decimal novoPreco);
     }
 }

@@ -3,6 +3,8 @@ namespace FIAPCloudGames.Models.DTOs.Users
 {
     public class UserUpdateDto
     {
+        [Required(ErrorMessage = "O Id do usuário é obrigatório")]
+        public int Id { get; set; }
         [Required(ErrorMessage = "O nome é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "O nome deve ter entre 3 e 100 caracteres")]
         public string Name { get; set; }
@@ -18,6 +20,5 @@ namespace FIAPCloudGames.Models.DTOs.Users
         [Compare("Password", ErrorMessage = "As senhas não coincidem")]
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
-        public int Id { get; internal set; }
     }
 }

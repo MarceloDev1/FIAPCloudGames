@@ -94,9 +94,9 @@ namespace FIAPCloudGames.Services
             return await GetUserByIdAsync(user.Id);
         }
 
-        public async Task UpdateUserAsync(int id, UserUpdateDto userDto)
+        public async Task UpdateUserAsync(UserUpdateDto userDto)
         {
-            var user = await _context.Users.FindAsync(id);
+            var user = await _context.Users.FindAsync(userDto.Id);
 
             if (user == null)
             {

@@ -63,7 +63,7 @@ namespace FIAPCloudGames.Controllers
         [HttpPost]
         [Route("CreateGame")]
         [Authorize] // Requer autenticação
-        public async Task<ActionResult<GameResponseDto>> CreateGame([FromBody] RegisterRequest gameDto)
+        public async Task<ActionResult<GameResponseDto>> CreateGame([FromBody] GameCreateDto gameDto)
         {            
             if (!ModelState.IsValid)
             {
@@ -98,20 +98,14 @@ namespace FIAPCloudGames.Controllers
         /// <summary>
         /// Atualiza um jogo existente
         /// </summary>
-        /// <param name="id">ID do jogo</param>
         /// <param name="gameDto">Dados atualizados do jogo</param>
         [HttpPut]
-        [Route("UpdateGame/{id}")]
-        public async Task<IActionResult> UpdateGame(int id, [FromBody] GameUpdateDto gameDto)
+        [Route("UpdateGame")]
+        public async Task<IActionResult> UpdateGame([FromBody] GameUpdateDto gameDto)
         {
-            if (id != gameDto.Id)
-            {
-                return BadRequest(new { message = "ID do jogo não corresponde" });
-            }
-
             try
             {
-                await _gameService.UpdateGameAsync(id, gameDto);
+                await _gameService.UpdateGameAsync(gameDto);
                 return NoContent();
             }
             catch (KeyNotFoundException)
@@ -123,6 +117,34 @@ namespace FIAPCloudGames.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        /// <summary>
+        /// Atualiza apenas o preço de um jogo
+        /// </summary>
+        /// <param name="updateDto">ID e novo preço</param>
+        [HttpPatch]
+        [Route("UpdateGamePrice")]
+        public async Task<IActionResult> UpdateGamePrice([FromBody] UpdateGamePriceDto updateDto)
+        {
+            try
+            {
+                var game = await _gameService.GetGameByIdAsync(updateDto.Id);
+                if (game == null)
+                {
+                    return NotFound(new { message = "Jogo não encontrado" });
+                }
+
+                game.Price = updateDto.NewPrice;
+                await _gameService.UpdateGamePriceAsync(updateDto.Id, updateDto.NewPrice);
+
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
 
         /// <summary>
         /// Remove um jogo

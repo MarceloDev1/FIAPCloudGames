@@ -72,20 +72,14 @@ namespace FIAPCloudGames.Controllers
         /// <summary>
         /// Atualiza um usuário existente
         /// </summary>
-        /// <param name="id">ID do usuário</param>
         /// <param name="userDto">Dados atualizados do usuário</param>
         [HttpPut]
-        [Route("UpdateUser/{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UserUpdateDto userDto)
+        [Route("UpdateUser")]
+        public async Task<IActionResult> Update([FromBody] UserUpdateDto userDto)
         {
-            if (id != userDto.Id)
-            {
-                return BadRequest(new { message = "ID do usuário não corresponde" });
-            }
-
             try
             {
-                await _userService.UpdateUserAsync(id, userDto);
+                await _userService.UpdateUserAsync(userDto);
                 return NoContent();
             }
             catch (KeyNotFoundException)
@@ -103,7 +97,7 @@ namespace FIAPCloudGames.Controllers
         /// </summary>
         /// <param name="id">ID do usuário</param>
         [HttpDelete]
-        [Route("DeleteUser/{id}")]
+        [Route("DeleteUser")]
         public async Task<IActionResult> Delete(int id)
         {
             try

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FIAPCloudGames.Models.DTOs.Games
 {
-    public class RegisterRequest
+    public class GameCreateDto
     {
         [Required(ErrorMessage = "O título é obrigatório")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "O título deve ter entre 3 e 100 caracteres")]

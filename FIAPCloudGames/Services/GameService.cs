@@ -56,7 +56,7 @@ namespace FIAPCloudGames.Services
             };
         }
 
-        public async Task<GameResponseDto> CreateGameAsync(RegisterRequest gameDto)
+        public async Task<GameResponseDto> CreateGameAsync(GameCreateDto gameDto)
         {
             var game = new Game
             {
@@ -75,9 +75,9 @@ namespace FIAPCloudGames.Services
             return await GetGameByIdAsync(game.Id);
         }
 
-        public async Task UpdateGameAsync(int id, GameUpdateDto gameDto)
+        public async Task UpdateGameAsync(GameUpdateDto gameDto)
         {
-            var game = await _context.Games.FindAsync(id);
+            var game = await _context.Games.FindAsync(gameDto.Id);
             if (game == null) throw new KeyNotFoundException();
 
             game.Name = gameDto.Title ?? game.Name;
@@ -98,5 +98,18 @@ namespace FIAPCloudGames.Services
             _context.Games.Remove(game);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateGamePriceAsync(int id, decimal novoPreco)
+        {
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+                throw new KeyNotFoundException("Jogo não encontrado");
+
+            game.Price = novoPreco;
+            game.UpdatedAt = DateTime.UtcNow;
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
