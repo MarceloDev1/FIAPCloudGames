@@ -62,7 +62,7 @@ namespace FIAPCloudGames.Controllers
         /// <param name="gameDto">Dados do novo jogo</param>
         [HttpPost]
         [Route("CreateGame")]
-        [Authorize] // Requer autenticação
+        [Authorize]
         public async Task<ActionResult<GameResponseDto>> CreateGame([FromBody] GameCreateDto gameDto)
         {            
             if (!ModelState.IsValid)
@@ -101,6 +101,7 @@ namespace FIAPCloudGames.Controllers
         /// <param name="gameDto">Dados atualizados do jogo</param>
         [HttpPut]
         [Route("UpdateGame")]
+        [Authorize]
         public async Task<IActionResult> UpdateGame([FromBody] GameUpdateDto gameDto)
         {
             try
@@ -124,6 +125,7 @@ namespace FIAPCloudGames.Controllers
         /// <param name="updateDto">ID e novo preço</param>
         [HttpPatch]
         [Route("UpdateGamePrice")]
+        [Authorize]
         public async Task<IActionResult> UpdateGamePrice([FromBody] UpdateGamePriceDto updateDto)
         {
             try
@@ -152,6 +154,7 @@ namespace FIAPCloudGames.Controllers
         /// <param name="id">ID do jogo</param>
         [HttpDelete]
         [Route("DeleteGame")]
+        [Authorize]
         public async Task<IActionResult> DeleteGame(int id)
         {
             try

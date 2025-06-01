@@ -46,7 +46,8 @@ namespace FIAPCloudGames.Services
                     Name = u.Name,
                     Email = u.Email,
                     CreatedAt = u.CreatedAt,
-                    UpdatedAt = u.UpdatedAt
+                    UpdatedAt = u.UpdatedAt,
+                    Role = u.Role
                 })
                 .ToListAsync();
         }
@@ -82,9 +83,9 @@ namespace FIAPCloudGames.Services
                 Name = userDto.Name,
                 Email = userDto.Email,
                 PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.Password),
-                Role = userDto.Role, // Define a Role
+                Role = userDto.Role,
                 CreatedAt = DateTime.UtcNow,
-                RefreshToken = string.Empty // Define como vazio
+                RefreshToken = string.Empty
 
             };
 
