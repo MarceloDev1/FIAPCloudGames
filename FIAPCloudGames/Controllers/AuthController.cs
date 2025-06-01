@@ -27,7 +27,7 @@ namespace FIAPCloudGames.Controllers
             return Ok(new { message = "API de autenticação operacional", status = "Online" });
         }
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequest request)
         {
@@ -59,7 +59,7 @@ namespace FIAPCloudGames.Controllers
             }
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
