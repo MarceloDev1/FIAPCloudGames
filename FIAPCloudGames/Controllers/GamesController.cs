@@ -1,12 +1,9 @@
 ﻿using FIAPCloudGames.Data;
 using FIAPCloudGames.Models.DTOs.Games;
-using FIAPCloudGames.Models.Entities;
 using FIAPCloudGames.Models.Enums;
-using FIAPCloudGames.Services;
 using FIAPCloudGames.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace FIAPCloudGames.Controllers
 {

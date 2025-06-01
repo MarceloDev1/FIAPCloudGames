@@ -1,5 +1,4 @@
-﻿using System;
-namespace FIAPCloudGames.Models.DTOs.Users
+﻿namespace FIAPCloudGames.Models.DTOs.Users
 {
     public class UserListDto
     {

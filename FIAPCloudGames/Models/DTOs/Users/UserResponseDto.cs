@@ -1,5 +1,4 @@
 ﻿using FIAPCloudGames.Models.Enums;
-using System;
 namespace FIAPCloudGames.Models.DTOs.Users
 {
     public class UserResponseDto

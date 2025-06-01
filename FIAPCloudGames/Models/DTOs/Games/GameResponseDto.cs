@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FIAPCloudGames.Models.DTOs.Games
+﻿namespace FIAPCloudGames.Models.DTOs.Games
 {
     public class GameResponseDto
     {
