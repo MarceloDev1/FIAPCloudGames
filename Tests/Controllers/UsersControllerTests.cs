@@ -168,7 +168,7 @@ namespace FIAPCloudGames.UnitTests.Controllers
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
 
             var response = JsonConvert.DeserializeObject<Dictionary<string, string>>(
-        JsonConvert.SerializeObject(badRequestResult.Value));
+            JsonConvert.SerializeObject(badRequestResult.Value));
             Assert.Equal("Error message", response["Message"]);
         }
 
@@ -202,7 +202,9 @@ namespace FIAPCloudGames.UnitTests.Controllers
 
             // Assert
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal("Usuário não encontrado", (notFoundResult.Value as dynamic).message);
+            var json = System.Text.Json.JsonSerializer.Serialize(notFoundResult.Value);
+            var response = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            Assert.Equal("Usuário não encontrado", response["Message"]);
         }
 
         [Fact]
@@ -224,15 +226,26 @@ namespace FIAPCloudGames.UnitTests.Controllers
         public async Task Update_ShouldReturnBadRequestResult_WhenServiceThrowsException()
         {
             // Arrange
-            var userDto = new UserUpdateDto { Id = 1, Name = "Updated User", Email = "updated@test.com" };
-            _mockUserService.Setup(x => x.UpdateUserAsync(userDto)).ThrowsAsync(new Exception("Error message"));
+            var userDto = new UserUpdateDto
+            {
+                Id = 1,
+                Name = "Updated User",
+                Email = "updated@test.com"
+            };
+
+            _mockUserService.Setup(x => x.UpdateUserAsync(userDto))
+                           .ThrowsAsync(new Exception("Error message"));
 
             // Act
             var result = await _controller.Update(userDto);
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.Equal("Error message", (badRequestResult.Value as dynamic).message);
+
+            var json = System.Text.Json.JsonSerializer.Serialize(badRequestResult.Value);
+            var response = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+
+            Assert.Equal("Error message", response["Message"]);
         }
 
         #endregion
@@ -258,14 +271,18 @@ namespace FIAPCloudGames.UnitTests.Controllers
         {
             // Arrange
             var userId = 1;
-            _mockUserService.Setup(x => x.DeleteUserAsync(userId)).ThrowsAsync(new KeyNotFoundException());
+            _mockUserService.Setup(x => x.DeleteUserAsync(userId))
+                           .ThrowsAsync(new KeyNotFoundException());
 
             // Act
             var result = await _controller.Delete(userId);
 
             // Assert
             var notFoundResult = Assert.IsType<NotFoundObjectResult>(result);
-            Assert.Equal("Usuário não encontrado", (notFoundResult.Value as dynamic).message);
+            var responseJson = System.Text.Json.JsonSerializer.Serialize(notFoundResult.Value);
+            var response = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(responseJson);
+
+            Assert.Equal("Usuário não encontrado", response["message"] ?? response["Message"]);
         }
 
         [Fact]
@@ -293,7 +310,9 @@ namespace FIAPCloudGames.UnitTests.Controllers
 
             // Assert
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
-            Assert.Equal("Error message", (badRequestResult.Value as dynamic).message);
+            var json = System.Text.Json.JsonSerializer.Serialize(badRequestResult.Value);
+            var response = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, string>>(json);
+            Assert.Equal("Error message", response["message"]); // lowercase 'message'
         }
 
         #endregion

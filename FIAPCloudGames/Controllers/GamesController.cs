@@ -151,7 +151,7 @@ namespace FIAPCloudGames.Controllers
         /// </summary>
         /// <param name="id">ID do jogo</param>
         [HttpDelete]
-        [Route("DeleteGame/{id}")]
+        [Route("DeleteGame")]
         public async Task<IActionResult> DeleteGame(int id)
         {
             try

@@ -54,24 +54,5 @@ namespace FIAPCloudGames.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
-        public Task<AuthResponse> Authenticate(LoginRequest model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<AuthResponse> RefreshToken(string token)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<AuthResponse> Register(RegisterRequest model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> RevokeToken(string token)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

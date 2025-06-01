@@ -94,11 +94,11 @@ namespace FIAPCloudGames.Controllers
             }
             catch (KeyNotFoundException)
             {
-                return NotFound(new { message = "Usuário não encontrado" });
+                return NotFound(new { Message = "Usuário não encontrado" });
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new { Message = ex.Message });
             }
         }
 
@@ -110,6 +110,10 @@ namespace FIAPCloudGames.Controllers
         [Route("DeleteUser")]
         public async Task<IActionResult> Delete(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "ID inválido" });
+            }
             try
             {
                 await _userService.DeleteUserAsync(id);

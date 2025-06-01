@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FIAPCloudGames.Models.Auth;
-using FIAPCloudGames.Services;
 using Microsoft.AspNetCore.Authorization;
-using FIAPCloudGames.Models;
 using FIAPCloudGames.Models.DTOs.Users;
 using FIAPCloudGames.Models.Enums;
 using FIAPCloudGames.Services.Interfaces;
@@ -96,23 +94,6 @@ namespace FIAPCloudGames.Controllers
                     user.Email,
                     user.Role
                 });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
-
-        [HttpPost("refresh-token")]
-        [Authorize]
-        public async Task<IActionResult> RefreshToken()
-        {
-            try
-            {
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier).ToString();
-                var newToken = await _authService.RefreshToken(userId);
-
-                return Ok(new { token = newToken });
             }
             catch (Exception ex)
             {

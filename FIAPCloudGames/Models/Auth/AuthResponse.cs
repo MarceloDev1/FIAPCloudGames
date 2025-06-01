@@ -16,7 +16,7 @@ namespace FIAPCloudGames.Models.Auth
             Name = user.Name;
             Email = user.Email;
             Token = token;
-            ExpiresIn = DateTime.UtcNow.AddHours(1); // Exemplo: token expira em 1 hora
+            ExpiresIn = DateTime.UtcNow.AddHours(1);
         }
     }
 }
