@@ -35,6 +35,11 @@ namespace FIAPCloudGames.Controllers
         [Route("GetUserById/{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id <= 0)
+            {
+                return BadRequest(new { message = "ID deve ser maior que zero" });
+            }
+
             var user = await _userService.GetUserByIdAsync(id);
 
             if (user == null)
@@ -65,7 +70,7 @@ namespace FIAPCloudGames.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(new { Message = ex.Message });
             }
         }
 
@@ -77,6 +82,11 @@ namespace FIAPCloudGames.Controllers
         [Route("UpdateUser")]
         public async Task<IActionResult> Update([FromBody] UserUpdateDto userDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             try
             {
                 await _userService.UpdateUserAsync(userDto);

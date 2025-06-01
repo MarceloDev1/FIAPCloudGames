@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FIAPCloudGames", "FIAPCloudGames\FIAPCloudGames.csproj", "{01F478B0-17EA-4AB6-AA44-703C505E4F85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FIAPCloudGames", "FIAPCloudGames\FIAPCloudGames.csproj", "{01F478B0-17EA-4AB6-AA44-703C505E4F85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{5D41574E-9475-4480-9138-05E57B272DBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{01F478B0-17EA-4AB6-AA44-703C505E4F85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01F478B0-17EA-4AB6-AA44-703C505E4F85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01F478B0-17EA-4AB6-AA44-703C505E4F85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D41574E-9475-4480-9138-05E57B272DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D41574E-9475-4480-9138-05E57B272DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D41574E-9475-4480-9138-05E57B272DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D41574E-9475-4480-9138-05E57B272DBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
