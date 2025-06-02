@@ -32,12 +32,13 @@ API REST para gerenciamento de usuários e jogos educacionais em tecnologia, des
 
 ```
 FIAPCloudGames/
-├── Controllers/       # Endpoints da API
-├── Services/          # Lógica de negócios
-├── Models/            # DTOs e Entidades
-├── Data/              # Camada de dados
-├── Middleware/        # Middlewares customizados
-└── UnitTests/         # Testes automatizados
+   ├── Controllers/       # Endpoints da API
+   ├── Services/          # Lógica de negócios
+   ├── Models/            # DTOs e Entidades
+   ├── Data/              # Camada de dados
+   ├── Middleware/        # Middlewares customizados
+Tests/
+   └── UnitTests/         # Testes automatizados
 ```
 
 ## 🚀 Como Executar
